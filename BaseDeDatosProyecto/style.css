@@ -1,0 +1,46 @@
+
+*{
+    margin: 0;
+
+}
+body{
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    color: beige;
+   
+}
+
+
+.contenedor-titulo {
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    text-align: center;
+    border-radius: 3rem;
+    background-color: #206886;
+}
+
+.contenedor-titulo h1{ 
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.buttonContainer{
+    text-align: center;
+    margin-top: 50px;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+.boton{
+    width: 250px;
+    margin: 50px;
+    text-decoration: none;
+    background-color: #206886;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+
