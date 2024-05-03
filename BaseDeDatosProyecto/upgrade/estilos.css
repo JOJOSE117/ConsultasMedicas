@@ -1,0 +1,21 @@
+body{
+    background-image: url("../images/hospital2.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+
+.btn button{
+    width: 250px;
+    margin: 50px;
+    text-decoration: none;
+    background-color: #0B2B5C;
+    border: 1px solid #0B2B5C;
+    color: white;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.btn button::hover{
+    /* background-color: transparent; */
+}

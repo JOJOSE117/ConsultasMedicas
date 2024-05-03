@@ -17,7 +17,7 @@ body{
     margin-right: 10px;
     text-align: center;
     border-radius: 3rem;
-    background-color: #206886;
+    background-color: #04AD9A;
 }
 
 .contenedor-titulo h1{ 
@@ -38,7 +38,7 @@ a{
     width: 250px;
     margin: 50px;
     text-decoration: none;
-    background-color: #206886;
+    background-color: #0B2B5C;
     border-radius: 5px;
     padding: 20px;
 }
