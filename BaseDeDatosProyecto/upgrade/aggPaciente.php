@@ -6,6 +6,8 @@ $conn = connect();
 
 // Verificar si la conexión se realizó con éxito
 if ($conn instanceof mysqli) {
+
+    
     // Verificar si se enviaron datos por el método POST
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Obtener los valores del formulario

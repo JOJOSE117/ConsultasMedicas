@@ -38,6 +38,8 @@
                         <th>Nombre</th>
                         <th>Apellido</th>
                         <th>Aseguradora</th>
+                        <th>Fecha</th>
+                        <th>Medico asignado</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -55,8 +57,11 @@
                         echo "<td>" . $row["nombre"] . "</td>";
                         echo "<td>" . $row["apellido"] . "</td>";
                         echo "<td>" . ($row["aseguradora_nombre"] ? $row["aseguradora_nombre"] : "No asegurado") . "</td>";
+                        echo "<td>". $row[""] . "</td>";
+                        echo "<td>". $row[""] . "</td>";
                         echo "</tr>";
                     }
+
                     ?>
 
                 </tbody>
