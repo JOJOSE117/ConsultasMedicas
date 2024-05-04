@@ -1,0 +1,10 @@
+.btn-outline-primary {
+    color: black; /* Cambia esto por el color que quieras para el texto */
+    border-color: #123456; /* Cambia esto por el color que quieras para el borde */
+}
+
+.btn-outline-primary:hover {
+    color: #ffffff; /* Cambia esto por el color que quieras para el texto al pasar el ratón */
+    background-color: #123456; /* Cambia esto por el color que quieras para el fondo al pasar el ratón */
+    border-color: #123456; /* Cambia esto por el color que quieras para el borde al pasar el ratón */
+}

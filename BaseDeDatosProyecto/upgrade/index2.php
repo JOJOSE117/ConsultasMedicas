@@ -13,6 +13,7 @@
     <?php include "navbar.html" ?>
 
     <main>
+        <h1 class="titulo"">CONSULTAS MEDICAS</h1>
         <a href="citasxfecha.php" class="btn"><button>Citas por intervalo de fecha</button></a>
         <a href="citasxfecha.php" class="btn"><button>Pacientes por medico asignado</button></a>
         <a href="citasxfecha.php" class="btn"><button>Pagos por factura</button></a>

@@ -5,6 +5,14 @@ body{
     
 }
 
+.titulo{
+    text-align: center;
+    margin: 20px auto;
+    font-size: 4rem;
+    color: black;
+    font-weight: 400;
+}
+
 .btn button{
     height: 100px;
     width: 250px;
@@ -17,6 +25,3 @@ body{
     padding: 20px;
 }
 
-.btn button::hover{
-    /* background-color: transparent; */
-}
