@@ -25,7 +25,7 @@
 
 
     <main>
-        <h1 style="text-align:center">PACIENTES</h1>
+        <h1 style="text-align:center">TODOS LOS PACIENTES</h1>
 
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         </div>
@@ -45,9 +45,13 @@
                 <tbody>
                     <?php
                     $mysqli = connect();
-                    $query = "SELECT p.id_paciente, p.nombre, p.apellido, a.nombre AS aseguradora_nombre
+                    $query = "SELECT p.id_paciente, p.nombre, p.apellido, a.nombre AS aseguradora_nombre,
+                                 c.fecha, m.nombre AS nombre_medico
                                 FROM pacientes p
-                                LEFT JOIN aseguradora a ON p.id_aseguradora = a.id_aseguradora ";
+                                LEFT JOIN aseguradora a ON p.id_aseguradora = a.id_aseguradora
+                                LEFT JOIN citas c ON p.id_paciente = c.id_paciente
+                                LEFT JOIN medicos m ON c.id_medico = m.id_medico";
+
                     $result = $mysqli->query($query);
 
 
@@ -57,8 +61,8 @@
                         echo "<td>" . $row["nombre"] . "</td>";
                         echo "<td>" . $row["apellido"] . "</td>";
                         echo "<td>" . ($row["aseguradora_nombre"] ? $row["aseguradora_nombre"] : "No asegurado") . "</td>";
-                        echo "<td>". $row[""] . "</td>";
-                        echo "<td>". $row[""] . "</td>";
+                        echo "<td>" . $row["fecha"] . "</td>";
+                        echo "<td>" . $row["nombre_medico"] . "</td>";
                         echo "</tr>";
                     }
 
@@ -111,11 +115,36 @@
                                 <select class="form-select" aria-label="Default select example" name="aseguradora">
                                     <option selected>MazSeguro</option>
                                     <option value="SeguroPro">SeguroPro</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="fecha" class="form-label">Fecha</label>
+                                <input type="date" class="forma-control" id="fecha" name="fecha" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="medico" class="form-label">Medico asignado</label>
+                                <select class="form-select" name="medico" id="medico" required>
+
+                                    <?php
+                                    // Consulta SQL para obtener los médicos
+                                    $mysqli = connect();
+                                    $query2 = "SELECT id_medico, Nombre, Apellido FROM Medicos";
+                                    $result2 = $mysqli->query($query2);
+
+                                    // Generar las opciones del select con los médicos
+                                    while ($row_medico = $result2->fetch_assoc()) {
+                                        $medico_id = $row_medico["id_medico"];
+                                        $medico_nombre = $row_medico["Nombre"] . " " . $row_medico["Apellido"];
+                                        echo "<option value='$medico_id'>$medico_nombre</option>";
+                                    }
+                                    ?>
 
                                 </select>
                             </div>
 
                             <div class="mb-2">
+                                <small>La cita tiene un costo de 800$ * </small><br><br>
                                 <button type="submit" class="btn btn-primary">Guardar cambios</button>
                             </div>
                         </form>

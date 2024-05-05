@@ -7,12 +7,13 @@ $conn = connect();
 // Verificar si la conexión se realizó con éxito
 if ($conn instanceof mysqli) {
 
-    
     // Verificar si se enviaron datos por el método POST
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Obtener los valores del formulario
         $nombre = $_POST["nombre"];
         $apellido = $_POST["apellido"];
+        $fecha = $_POST["fecha"];
+        $medico_id = $_POST["medico"];
         $aseguradora_nombre = $_POST["aseguradora"]; // Nombre de la aseguradora desde el formulario
 
         // Consulta SQL para obtener el ID de la aseguradora
@@ -24,25 +25,27 @@ if ($conn instanceof mysqli) {
             $id_aseguradora = $row_aseguradora["id_aseguradora"];
 
             // Preparar la consulta SQL para insertar el paciente
-            $sql_insert_paciente = "INSERT INTO Pacientes (nombre, apellido, id_aseguradora) VALUES ('$nombre', '$apellido', '$id_aseguradora')";
+            $sql_insert_paciente = "INSERT INTO pacientes (nombre, apellido, id_aseguradora) VALUES ('$nombre', '$apellido', '$id_aseguradora')";
+            $conn->query($sql_insert_paciente);
 
-            // Ejecutar la consulta para insertar el paciente
-            if ($conn->query($sql_insert_paciente) === TRUE) {
-                echo "Nuevo paciente registrado exitosamente.";
-            } else {
-                echo "Error al registrar el paciente: " . $conn->error;
-            }
-        } else {
-            echo "Error: No se encontró la aseguradora.";
+            // Obtener el ID del paciente recién insertado
+            $paciente_id = $conn->insert_id;
+
+            // Consulta SQL para insertar la cita
+            $sql_insert_cita = "INSERT INTO citas (fecha, id_medico, id_paciente) VALUES ('$fecha', '$medico_id', '$paciente_id')";
+            $conn->query($sql_insert_cita);
+
+            // Obtener la fecha de emisión y la cantidad para la factura (misma que la fecha de la cita y cantidad fija)
+            $fecha_emision = $fecha;
+            $cantidad = 800; // Ejemplo de cantidad fija para la factura
+
+            // Consulta SQL para insertar la factura
+            $sql_insert_factura = "INSERT INTO facturas (id_cita, fecha, monto_total) VALUES ('$conn->insert_id', '$fecha_emision', '$cantidad')";
+            $conn->query($sql_insert_factura);
+
+            header("Location: pacientes.php");
         }
-
-        // Cerrar la conexión
-        $conn->close();
-    } else {
-        // Si no se enviaron datos por POST, mostrar un mensaje de error
-        echo "Error: El formulario no ha sido enviado correctamente.";
     }
-} else {
-    // Si no se pudo conectar a la base de datos, mostrar un mensaje de error
-    echo "Error de conexión: " . $conn;
+    // Cerrar la conexión
+    $conn->close();
 }

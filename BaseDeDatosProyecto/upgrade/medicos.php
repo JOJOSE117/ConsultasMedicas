@@ -54,7 +54,6 @@
                         echo "<td>" . $row["Apellido"] . "</td>";
                         echo "<td>" . $row["medico_especialidad"] . "</td>";
                         echo "<td> <button class='btn btn-sm btn-danger btn-eliminar' data-id='" . $row["id_medico"] . "'>Eliminar </button></td>";
-
                        echo "</tr>";
                     }
                     ?>
